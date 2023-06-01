@@ -4,7 +4,7 @@ export const FacturaApp = () => {
     
     const {id,descripcion,cliente,empresa,items} = getFactura();
     const {nombre,apellidos,direccion} = cliente;
-    const {calle,numero,ciudad} = direccion;
+    const {calle,numero,ciudad,estado,pais,cp} = direccion;
 
     return (
         <>
@@ -20,6 +20,9 @@ export const FacturaApp = () => {
                 <li>Calle: {calle}</li>
                 <li>Número: {numero}</li>
                 <li>Ciudad: {ciudad}</li>
+                <li>Estado: {estado}</li>
+                <li>País: {pais}</li>
+                <li>CP: {cp}</li>
             </ul>
             <h2>Datos Empresa</h2>
             <ul>
