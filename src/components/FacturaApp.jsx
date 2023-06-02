@@ -1,4 +1,4 @@
-import { getFactura } from "../services/facturaService";
+import { getFactura } from '../services/facturaService';
 import { VistaFactura } from './VistaFactura';
 import { VistaCliente } from './VistaCliente';
 import { VistaEmpresa } from './VistaEmpresa';

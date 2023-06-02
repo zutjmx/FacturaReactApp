@@ -1,4 +1,4 @@
-import { facturaDatos } from "../data/facturaDatos"
+import { facturaDatos } from '../data/facturaDatos';
 
 export const getFactura = () => {
     console.log(facturaDatos);
