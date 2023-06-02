@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { VistaRenglonElemento } from './VistaRenglonElemento';
 
 const VistaProductos = ({titulo,items}) => {
     return (
@@ -20,12 +21,7 @@ const VistaProductos = ({titulo,items}) => {
                   <tbody>
                     {items.map(({ id, descripcion, precio, cantidad }) => {
                       return (
-                        <tr key={id}>
-                          <td align="center">{id}</td>
-                          <td>{descripcion}</td>
-                          <td align="right">{precio}</td>
-                          <td align="right">{cantidad}</td>
-                        </tr>
+                        <VistaRenglonElemento key={id} id={id} descripcion={descripcion} precio={precio} cantidad={cantidad}/>
                       );
                     })}
                   </tbody>
