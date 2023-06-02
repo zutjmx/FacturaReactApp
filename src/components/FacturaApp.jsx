@@ -6,9 +6,7 @@ import { VistaProductos } from './VistaProductos';
 
 export const FacturaApp = () => {
   const { id, descripcion, cliente, empresa, items } = getFactura();
-  const { nombre, apellidos, direccion } = cliente;
-  const { calle, numero, ciudad, estado, pais, cp } = direccion;
-
+  
   return (
     <>
       <div className="container">
@@ -23,23 +21,13 @@ export const FacturaApp = () => {
             <div className="row">
               <div className="col">
                 {/* Componente cliente ini*/}
-                <VistaCliente nombre={nombre} 
-                              apellidos={apellidos}
-                              calle={calle} 
-                              numero={numero} 
-                              ciudad={ciudad} 
-                              estado={estado} 
-                              pais={pais} 
-                              cp={cp} 
-                />
+                <VistaCliente cliente={cliente}/>
                 {/* Componente cliente fin*/}
               </div>
 
               <div className="col">
                 {/* Componente empresa ini*/}
-                <VistaEmpresa nombre={empresa.nombre}
-                              numeroFiscal={empresa.numeroFiscal}
-                />
+                <VistaEmpresa empresa={empresa}/>
                 {/* Componente empresa fin*/}
               </div>
             </div>

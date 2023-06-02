@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
-const VistaEmpresa = ({nombre, numeroFiscal}) => {
+const VistaEmpresa = ({empresa}) => {
+  const {nombre, numeroFiscal} = empresa;
   return (
     <>
       <div className="card my-3">
@@ -23,8 +24,7 @@ const VistaEmpresa = ({nombre, numeroFiscal}) => {
 };
 
 VistaEmpresa.propTypes = {
-    nombre: PropTypes.string.isRequired,
-    numeroFiscal: PropTypes.string.isRequired
+  empresa: PropTypes.object.isRequired
 }
 
 export {
