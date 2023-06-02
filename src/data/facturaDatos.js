@@ -43,9 +43,17 @@ const generaItemsArray = () => {
     return itemsArray;
 }
 
+const generaIdfactura = () => {
+    return faker.number.int({min:100,max:500});
+}
+
+const generaDescripcionFactura = () => {
+    return faker.word.words({count: 4}).toUpperCase();
+}
+
 export const facturaDatos = {
-    id: faker.number.int({min:100,max:500}),
-    descripcion: faker.word.words({count: 4}).toUpperCase(),
+    id: generaIdfactura(),
+    descripcion: generaDescripcionFactura(),
     cliente: generaCliente(),
     empresa: generaEmpresa(),
     items: generaItemsArray()
