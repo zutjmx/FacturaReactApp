@@ -9,28 +9,28 @@ export const FacturaApp = () => {
     return (
         <>
             <h1>Ejemplo de Factura</h1>
-            <ul>
-                <li>Id: {id}</li>
-                <li>Id: {descripcion}</li>
+            <ul className="list-group">
+                <li className="list-group-item">Id: {id}</li>
+                <li className="list-group-item">Id: {descripcion}</li>
             </ul>
             <h2>Datos Cliente</h2>
-            <ul>
-                <li>Nombre: {nombre}</li>
-                <li>Apellidos: {apellidos}</li>
-                <li>Calle: {calle}</li>
-                <li>Número: {numero}</li>
-                <li>Ciudad: {ciudad}</li>
-                <li>Estado: {estado}</li>
-                <li>País: {pais}</li>
-                <li>CP: {cp}</li>
+            <ul className="list-group">
+                <li className="list-group-item">Nombre: {nombre}</li>
+                <li className="list-group-item">Apellidos: {apellidos}</li>
+                <li className="list-group-item">Calle: {calle}</li>
+                <li className="list-group-item">Número: {numero}</li>
+                <li className="list-group-item">Ciudad: {ciudad}</li>
+                <li className="list-group-item">Estado: {estado}</li>
+                <li className="list-group-item">País: {pais}</li>
+                <li className="list-group-item">CP: {cp}</li>
             </ul>
             <h2>Datos Empresa</h2>
-            <ul>
-                <li>Nombre: {empresa.nombre}</li>
-                <li>N° Fiscal: {empresa.numeroFiscal}</li>
+            <ul className="list-group">
+                <li className="list-group-item">Nombre: {empresa.nombre}</li>
+                <li className="list-group-item">N° Fiscal: {empresa.numeroFiscal}</li>
             </ul>
             <h3>Productos</h3>
-            <table>
+            <table className="table table-success table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
