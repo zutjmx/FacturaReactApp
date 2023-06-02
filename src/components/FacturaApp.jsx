@@ -33,7 +33,7 @@ export const FacturaApp = () => {
             </div>
 
             {/* Componente productos ini*/}            
-            <VistaProductos items={items}/>
+            <VistaProductos titulo="Lista de Productos" items={items}/>
             {/* Componente productos fin*/}
 
           </div>

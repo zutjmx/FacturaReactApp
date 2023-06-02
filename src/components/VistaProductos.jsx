@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
-const VistaProductos = ({items}) => {
+const VistaProductos = ({titulo,items}) => {
     return (
         <>
             <div className="card my-3">
               <div className="card-header">
-                <h5 className="bg-info text-dark">Productos</h5>
+                <h5 className="bg-info text-dark">{titulo}</h5>
               </div>
               <div className="card-body">
                 <table className="table table-success table-striped table-hover table-bordered border-primary">
@@ -37,6 +37,7 @@ const VistaProductos = ({items}) => {
 }
 
 VistaProductos.propTypes = {
+    titulo: PropTypes.string.isRequired, 
     items: PropTypes.array.isRequired
 }
 
