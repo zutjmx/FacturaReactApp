@@ -21,13 +21,13 @@ export const FacturaApp = () => {
             <div className="row">
               <div className="col">
                 {/* Componente cliente ini*/}
-                <VistaCliente cliente={cliente}/>
+                <VistaCliente titulo="Datos del Cliente" cliente={cliente}/>
                 {/* Componente cliente fin*/}
               </div>
 
               <div className="col">
                 {/* Componente empresa ini*/}
-                <VistaEmpresa empresa={empresa}/>
+                <VistaEmpresa titulo="Datos de la Empresa" empresa={empresa}/>
                 {/* Componente empresa fin*/}
               </div>
             </div>

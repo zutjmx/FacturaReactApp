@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const VistaCliente = ({cliente}) => {
+const VistaCliente = ({titulo,cliente}) => {
     const { nombre, apellidos, direccion } = cliente;
     const { calle, numero, ciudad, estado, pais, cp } = direccion;
 
@@ -9,7 +9,7 @@ const VistaCliente = ({cliente}) => {
             <div className="card my-3">
                 <div className="card-body">
                 <h5 className="card-title bg-success text-white">
-                    Datos Cliente
+                    {titulo}
                 </h5>
                 </div>
                 <ul className="list-group">
@@ -52,7 +52,8 @@ const VistaCliente = ({cliente}) => {
 }
 
 VistaCliente.propTypes = {
-    cliente: PropTypes.object.isRequired
+    cliente: PropTypes.object.isRequired,
+    titulo: PropTypes.string.isRequired
 }
 
 export {

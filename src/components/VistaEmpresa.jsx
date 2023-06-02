@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
-const VistaEmpresa = ({empresa}) => {
+const VistaEmpresa = ({titulo,empresa}) => {
   const {nombre, numeroFiscal} = empresa;
   return (
     <>
       <div className="card my-3">
         <div className="card-body">
-          <h5 className="card-title bg-success text-white">Datos Empresa</h5>
+          <h5 className="card-title bg-success text-white">{titulo}</h5>
         </div>
         <ul className="list-group">
           <li className="list-group-item">
@@ -24,6 +24,7 @@ const VistaEmpresa = ({empresa}) => {
 };
 
 VistaEmpresa.propTypes = {
+  titulo: PropTypes.string.isRequired,
   empresa: PropTypes.object.isRequired
 }
 
