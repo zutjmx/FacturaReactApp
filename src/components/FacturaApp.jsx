@@ -37,6 +37,23 @@ export const FacturaApp = () => {
             <VistaProductos titulo="Lista de Productos" items={items}/>
             {/* Componente productos fin*/}
             <VistaTotal total={total}/> {/* Componente total*/}
+            {/* Componente formulario ini*/}
+            <form>
+              <div className="mb-3">
+                <label className="form-label">Descripción</label>
+                <input type="text" className="form-control" id="descripcion" name='descripcion' />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Precio</label>
+                <input type="text" className="form-control" id="precio" name='precio' />
+              </div>
+              <div className="mb-3">
+                <label className="form-check-label" >Cantidad</label>
+                <input type="text" className="form-control" id="cantidad" name='cantidad' />                
+              </div>
+              <button type="submit" className="btn btn-primary">Guardar</button>
+            </form>
+            {/* Componente formulario fin*/}
           </div>
         </div>
         {/* Card principal fin*/}
