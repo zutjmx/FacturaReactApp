@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 
 const VistaCliente = ({titulo,cliente}) => {
-    const { nombre, apellidos, direccion } = cliente;
-    const { calle, numero, ciudad, estado, pais, cp } = direccion;
+    const { nombre, apellidos, direccion: { calle, numero, ciudad, estado, pais, cp } } = cliente;
 
     return (
         <>
