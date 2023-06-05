@@ -1,4 +1,4 @@
-import { facturaDatos } from '../data/facturaDatos';
+import { facturaDatos, generaNuevoIdItem } from '../data/facturaDatos';
 
 export const getFactura = () => {
     /* let total = 0;
@@ -12,4 +12,8 @@ export const getFactura = () => {
     .reduce((acumulador, valorActual) => acumulador + valorActual, 0);
 
     return {...facturaDatos, total};
+}
+
+export const getNuevoIdItem = () => {
+    return generaNuevoIdItem();
 }

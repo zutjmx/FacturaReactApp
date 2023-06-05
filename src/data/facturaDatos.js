@@ -51,6 +51,10 @@ const generaDescripcionFactura = () => {
     return faker.word.words({count: 4}).toUpperCase();
 }
 
+export const generaNuevoIdItem = () => {
+    return faker.number.int({min:2001,max:3000});
+}
+
 export const facturaDatos = {
     id: generaIdfactura(),
     descripcion: generaDescripcionFactura(),
