@@ -35,7 +35,7 @@ const generaItemsArray = () => {
         const objItem = {
             id: faker.number.int({min:1000,max:2000}),
             descripcion: faker.commerce.product().toUpperCase(),
-            precio: faker.number.int({min:200,max:2000}),
+            precio: faker.number.int({min:20,max:100}),
             cantidad: faker.number.int({min:10,max:30}),
         }
         itemsArray.push(objItem);

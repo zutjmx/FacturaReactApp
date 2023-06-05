@@ -3,9 +3,10 @@ import { VistaFactura } from './VistaFactura';
 import { VistaCliente } from './VistaCliente';
 import { VistaEmpresa } from './VistaEmpresa';
 import { VistaProductos } from './VistaProductos';
+import { VistaTotal } from './VistaTotal';
 
 export const FacturaApp = () => {
-  const { id, descripcion, cliente, empresa, items } = getFactura();
+  const { id, descripcion, cliente, empresa, items, total } = getFactura();
   
   return (
     <>
@@ -35,7 +36,7 @@ export const FacturaApp = () => {
             {/* Componente productos ini*/}            
             <VistaProductos titulo="Lista de Productos" items={items}/>
             {/* Componente productos fin*/}
-
+            <VistaTotal total={total}/> {/* Componente total*/}
           </div>
         </div>
         {/* Card principal fin*/}
