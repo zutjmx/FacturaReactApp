@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2'
 
 import { getFactura } from '../services/facturaService';
 import { VistaFactura } from './VistaFactura';
@@ -47,6 +48,30 @@ export const FacturaApp = () => {
             {/* Componente formulario ini*/}
             <form className="w-50" onSubmit={event => {
               event.preventDefault();
+              if(valorDescripcion.trim().length<=1) {
+                Swal.fire(
+                  'Nuevo Producto',
+                  'Se requiere descripción del producto',
+                  'info'
+                );
+                return;
+              }
+              if(valorPrecio.trim().length<=1) {
+                Swal.fire(
+                  'Nuevo Producto',
+                  'Se requiere precio del producto',
+                  'info'
+                );
+                return;
+              }
+              if(valorCantidad.trim().length<1) {
+                Swal.fire(
+                  'Nuevo Producto',
+                  'Se requiere cantidad del producto',
+                  'info'
+                );
+                return;
+              }
               setItems([...items,{
                 id: contadorItemId, 
                 descripcion: valorDescripcion, 
