@@ -9,28 +9,29 @@ import { VistaProductos } from './VistaProductos';
 import { VistaTotal } from './VistaTotal';
 
 export const FacturaApp = () => {
-  const { id, descripcion, cliente, empresa, items: initalItems, total } = getFactura();
-  const [valorDescripcion, setValorDescripcion] = useState('');
-  const [valorPrecio, setValorPrecio] = useState('');
-  const [valorCantidad, setValorCantidad] = useState('');
+  const { id, descripcion: descFactura, cliente, empresa, items: initalItems, total } = getFactura();
+  
+  const [facturaItemState, setFacturaItemState] = useState({
+    descripcion: '',
+    precio: '',
+    cantidad: ''
+  });
+
+  const {descripcion, precio, cantidad} = facturaItemState;
+  
   const [items, setItems] = useState(initalItems);
   const [contadorItemId, setContadorItemId] = useState(2001);
 
-  const onDescripcionChange = ({target}) => {
-    setValorDescripcion(target.value);
-  }
-
-  const onPrecioChange = ({target}) => {
-    setValorPrecio(target.value);
-  }
-
-  const onCantidadChange = ({target}) => {
-    setValorCantidad(target.value);
+  const onInputChange = ({target: {name,value}}) => {
+    setFacturaItemState({
+      ...facturaItemState,
+      [name]: value
+    });
   }
 
   const onFacturaItemSubmit = (event) => {
     event.preventDefault();
-    if(valorDescripcion.trim().length<=1) {
+    if(descripcion.trim().length<=1) {
       Swal.fire(
         'Nuevo Producto',
         'Se requiere la descripción del producto',
@@ -38,7 +39,7 @@ export const FacturaApp = () => {
       );
       return;
     }
-    if(valorPrecio.trim().length<=1) {
+    if(precio.trim().length<=1) {
       Swal.fire(
         'Nuevo Producto',
         'Se requiere el precio del producto',
@@ -46,7 +47,7 @@ export const FacturaApp = () => {
       );
       return;
     }
-    if(isNaN(valorPrecio.trim())) {
+    if(isNaN(precio.trim())) {
       Swal.fire(
         'Nuevo Producto',
         'Se requiere que el precio sea un número',
@@ -54,7 +55,7 @@ export const FacturaApp = () => {
       );
       return;
     }
-    if(valorCantidad.trim().length<1) {
+    if(cantidad.trim().length<1) {
       Swal.fire(
         'Nuevo Producto',
         'Se requiere la cantidad del producto',
@@ -62,7 +63,7 @@ export const FacturaApp = () => {
       );
       return;
     }
-    if(isNaN(valorCantidad.trim())) {
+    if(isNaN(cantidad.trim())) {
       Swal.fire(
         'Nuevo Producto',
         'Se requiere que la cantidad sea un número',
@@ -72,13 +73,15 @@ export const FacturaApp = () => {
     }
     setItems([...items,{
       id: contadorItemId, 
-      descripcion: valorDescripcion.trim().toUpperCase(), 
-      precio: +valorPrecio.trim(), 
-      cantidad: parseInt(valorCantidad.trim(),10)
+      descripcion: descripcion.trim().toUpperCase(), 
+      precio: +precio.trim(), 
+      cantidad: parseInt(cantidad.trim(),10)
     }]);
-    setValorDescripcion('');
-    setValorPrecio('');
-    setValorCantidad('');
+    setFacturaItemState({
+      descripcion: '',
+      precio: '',
+      cantidad: ''
+    });
     setContadorItemId(contadorItemId+1);
     Swal.fire(
       'Nuevo Producto',
@@ -96,7 +99,7 @@ export const FacturaApp = () => {
           <div className="card-body">
             
             {/* Componente VistaFactura */}
-            <VistaFactura id={id} descripcion={descripcion}/>
+            <VistaFactura id={id} descripcion={descFactura}/>
 
             <div className="row">
               <div className="col">
@@ -125,8 +128,8 @@ export const FacturaApp = () => {
                        id="descripcion" 
                        name="descripcion" 
                        placeholder="Descripción"
-                       onChange={event => onDescripcionChange(event)}
-                       value={valorDescripcion}
+                       onChange={event => onInputChange(event)}
+                       value={descripcion}
                 />
               </div>
               <div className="mb-3">
@@ -136,8 +139,8 @@ export const FacturaApp = () => {
                        id="precio" 
                        name="precio" 
                        placeholder="Precio"
-                       onChange={event => onPrecioChange(event)}
-                       value={valorPrecio}
+                       onChange={event => onInputChange(event)}
+                       value={precio}
                 />
               </div>
               <div className="mb-3">
@@ -147,8 +150,8 @@ export const FacturaApp = () => {
                        id="cantidad" 
                        name="cantidad" 
                        placeholder="Cantidad"
-                       onChange={onCantidadChange}
-                       value={valorCantidad}
+                       onChange={onInputChange}
+                       value={cantidad}
                 />
               </div>
               <button type="submit" className="btn btn-primary">Guardar</button>
