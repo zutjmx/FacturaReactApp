@@ -15,7 +15,78 @@ export const FacturaApp = () => {
   const [valorCantidad, setValorCantidad] = useState('');
   const [items, setItems] = useState(initalItems);
   const [contadorItemId, setContadorItemId] = useState(2001);
-  
+
+  const onDescripcionChange = ({target}) => {
+    setValorDescripcion(target.value);
+  }
+
+  const onPrecioChange = ({target}) => {
+    setValorPrecio(target.value);
+  }
+
+  const onCantidadChange = ({target}) => {
+    setValorCantidad(target.value);
+  }
+
+  const onFacturaItemSubmit = (event) => {
+    event.preventDefault();
+    if(valorDescripcion.trim().length<=1) {
+      Swal.fire(
+        'Nuevo Producto',
+        'Se requiere la descripción del producto',
+        'info'
+      );
+      return;
+    }
+    if(valorPrecio.trim().length<=1) {
+      Swal.fire(
+        'Nuevo Producto',
+        'Se requiere el precio del producto',
+        'info'
+      );
+      return;
+    }
+    if(isNaN(valorPrecio.trim())) {
+      Swal.fire(
+        'Nuevo Producto',
+        'Se requiere que el precio sea un número',
+        'info'
+      );
+      return;
+    }
+    if(valorCantidad.trim().length<1) {
+      Swal.fire(
+        'Nuevo Producto',
+        'Se requiere la cantidad del producto',
+        'info'
+      );
+      return;
+    }
+    if(isNaN(valorCantidad.trim())) {
+      Swal.fire(
+        'Nuevo Producto',
+        'Se requiere que la cantidad sea un número',
+        'info'
+      );
+      return;
+    }
+    setItems([...items,{
+      id: contadorItemId, 
+      descripcion: valorDescripcion.trim().toUpperCase(), 
+      precio: +valorPrecio.trim(), 
+      cantidad: parseInt(valorCantidad.trim(),10)
+    }]);
+    setValorDescripcion('');
+    setValorPrecio('');
+    setValorCantidad('');
+    setContadorItemId(contadorItemId+1);
+    Swal.fire(
+      'Nuevo Producto',
+      'Se agregó el producto',
+      'success'
+    );
+  }
+
   return (
     <>
       <div className="container">
@@ -46,43 +117,7 @@ export const FacturaApp = () => {
             {/* Componente productos fin*/}
             <VistaTotal total={total}/> {/* Componente total*/}
             {/* Componente formulario ini*/}
-            <form className="w-50" onSubmit={event => {
-              event.preventDefault();
-              if(valorDescripcion.trim().length<=1) {
-                Swal.fire(
-                  'Nuevo Producto',
-                  'Se requiere descripción del producto',
-                  'info'
-                );
-                return;
-              }
-              if(valorPrecio.trim().length<=1) {
-                Swal.fire(
-                  'Nuevo Producto',
-                  'Se requiere precio del producto',
-                  'info'
-                );
-                return;
-              }
-              if(valorCantidad.trim().length<1) {
-                Swal.fire(
-                  'Nuevo Producto',
-                  'Se requiere cantidad del producto',
-                  'info'
-                );
-                return;
-              }
-              setItems([...items,{
-                id: contadorItemId, 
-                descripcion: valorDescripcion, 
-                precio: +valorPrecio, 
-                cantidad: parseInt(valorCantidad,10)
-              }]);
-              setValorDescripcion('');
-              setValorPrecio('');
-              setValorCantidad('');
-              setContadorItemId(contadorItemId+1);
-            }}>
+            <form className="w-50" onSubmit={event => onFacturaItemSubmit(event)}>
               <div className="mb-3">
                 <label className="form-label">Descripción</label>
                 <input type="text" 
@@ -90,10 +125,7 @@ export const FacturaApp = () => {
                        id="descripcion" 
                        name="descripcion" 
                        placeholder="Descripción"
-                       onChange={event => {
-                        console.log(event.target.value);
-                        setValorDescripcion(event.target.value);
-                       }}
+                       onChange={event => onDescripcionChange(event)}
                        value={valorDescripcion}
                 />
               </div>
@@ -104,24 +136,18 @@ export const FacturaApp = () => {
                        id="precio" 
                        name="precio" 
                        placeholder="Precio"
-                       onChange={event => {
-                        console.log(event.target.value);
-                        setValorPrecio(event.target.value);
-                       }}
+                       onChange={event => onPrecioChange(event)}
                        value={valorPrecio}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-check-label" >Cantidad</label>
+                <label className="form-label" >Cantidad</label>
                 <input type="text" 
                        className="form-control" 
                        id="cantidad" 
                        name="cantidad" 
                        placeholder="Cantidad"
-                       onChange={event => {
-                        console.log(event.target.value);
-                        setValorCantidad(event.target.value);
-                       }}
+                       onChange={onCantidadChange}
                        value={valorCantidad}
                 />
               </div>
