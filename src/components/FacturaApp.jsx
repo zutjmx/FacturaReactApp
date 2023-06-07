@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 
-import { getFactura } from '../services/facturaService';
+import { getFactura, getFacturaVacia } from '../services/facturaService';
 import { VistaFactura } from './VistaFactura';
 import { VistaCliente } from './VistaCliente';
 import { VistaEmpresa } from './VistaEmpresa';
@@ -9,7 +9,17 @@ import { VistaProductos } from './VistaProductos';
 import { VistaTotal } from './VistaTotal';
 
 export const FacturaApp = () => {
-  const { id, descripcion: descFactura, cliente, empresa, items: initalItems, total } = getFactura();
+  const [factura, setFactura] = useState(getFacturaVacia());
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const datos = getFactura();
+    console.log('Datos de la Factura: ',datos);
+    setFactura(datos);
+    setItems(datos.items);
+  }, []);
+  
+  const { id, descripcion: descFactura, cliente, empresa, items: initalItems, total } = factura;
   
   const [facturaItemState, setFacturaItemState] = useState({
     descripcion: '',
@@ -19,7 +29,7 @@ export const FacturaApp = () => {
 
   const {descripcion, precio, cantidad} = facturaItemState;
   
-  const [items, setItems] = useState(initalItems);
+  //const [items, setItems] = useState(initalItems);
   const [contadorItemId, setContadorItemId] = useState(2001);
 
   const onInputChange = ({target: {name,value}}) => {

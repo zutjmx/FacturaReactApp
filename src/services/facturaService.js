@@ -1,4 +1,4 @@
-import { facturaDatos, generaNuevoIdItem } from '../data/facturaDatos';
+import { facturaDatos, generaNuevoIdItem, facturaVacia } from '../data/facturaDatos';
 
 export const getFactura = () => {
     /* let total = 0;
@@ -16,4 +16,9 @@ export const getFactura = () => {
 
 export const getNuevoIdItem = () => {
     return generaNuevoIdItem();
+}
+
+export const getFacturaVacia = () => {
+    const total = 0;
+    return {...facturaVacia,total};
 }

@@ -62,3 +62,25 @@ export const facturaDatos = {
     empresa: generaEmpresa(),
     items: generaItemsArray()
 }
+
+export const facturaVacia = {
+    id: 0,
+    descripcion: '',
+    cliente: {
+        nombre: '',
+        apellidos: '',
+        direccion: {
+            calle: '',
+            numero: '',
+            ciudad: '',
+            estado: '',
+            pais: '',
+            cp: ''
+        }
+    },
+    empresa: {
+        nombre: '',
+        numeroFiscal: ''
+    },
+    items: []
+}
