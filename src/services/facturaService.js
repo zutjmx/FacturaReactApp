@@ -7,10 +7,7 @@ export const getFactura = () => {
     }); */
 
     //Usando método reduce
-    const total = facturaDatos.items
-    .map(item => item.precio * item.cantidad)
-    .reduce((acumulador, valorActual) => acumulador + valorActual, 0);
-
+    const total = calcularTotal(facturaDatos.items);
     return {...facturaDatos, total};
 }
 
@@ -21,4 +18,10 @@ export const getNuevoIdItem = () => {
 export const getFacturaVacia = () => {
     const total = 0;
     return {...facturaVacia,total};
+}
+
+export const calcularTotal = (items = []) => {
+    return items
+    .map(item => item.precio * item.cantidad)
+    .reduce((acumulador, valorActual) => acumulador + valorActual, 0);
 }
