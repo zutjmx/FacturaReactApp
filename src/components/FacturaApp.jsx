@@ -9,28 +9,25 @@ import { VistaProductos } from './VistaProductos';
 import { VistaTotal } from './VistaTotal';
 
 export const FacturaApp = () => {
+  const [contadorItemId, setContadorItemId] = useState(2001);
   const [factura, setFactura] = useState(getFacturaVacia());
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    const datos = getFactura();
-    console.log('Datos de la Factura: ',datos);
-    setFactura(datos);
-    setItems(datos.items);
-  }, []);
-  
-  const { id, descripcion: descFactura, cliente, empresa, items: initalItems, total } = factura;
-  
+  const [items, setItems] = useState([]);  
   const [facturaItemState, setFacturaItemState] = useState({
     descripcion: '',
     precio: '',
     cantidad: ''
   });
 
+  const { id, descripcion: descFactura, cliente, empresa, total } = factura;
+
   const {descripcion, precio, cantidad} = facturaItemState;
   
-  //const [items, setItems] = useState(initalItems);
-  const [contadorItemId, setContadorItemId] = useState(2001);
+  useEffect(() => {
+    const datos = getFactura();
+    console.log('Datos de la Factura: ',datos);
+    setFactura(datos);
+    setItems(datos.items);
+  }, []);
 
   const onInputChange = ({target: {name,value}}) => {
     setFacturaItemState({
@@ -130,42 +127,49 @@ export const FacturaApp = () => {
             {/* Componente productos fin*/}
             <VistaTotal total={total}/> {/* Componente total*/}
             {/* Componente formulario ini*/}
-            <form className="w-50" onSubmit={event => onFacturaItemSubmit(event)}>
-              <div className="mb-3">
-                <label className="form-label">Descripción</label>
-                <input type="text" 
-                       className="form-control" 
-                       id="descripcion" 
-                       name="descripcion" 
-                       placeholder="Descripción"
-                       onChange={event => onInputChange(event)}
-                       value={descripcion}
-                />
+            <div className="card my-3">
+              <div className="card-header">
+                Nuevo Producto
               </div>
-              <div className="mb-3">
-                <label className="form-label">Precio</label>
-                <input type="text" 
-                       className="form-control" 
-                       id="precio" 
-                       name="precio" 
-                       placeholder="Precio"
-                       onChange={event => onInputChange(event)}
-                       value={precio}
-                />
+              <div className="card-body">
+                <form className="w-50" onSubmit={event => onFacturaItemSubmit(event)}>
+                  <div className="mb-3">
+                    <label className="form-label">Descripción</label>
+                    <input type="text" 
+                          className="form-control" 
+                          id="descripcion" 
+                          name="descripcion" 
+                          placeholder="Descripción"
+                          onChange={event => onInputChange(event)}
+                          value={descripcion}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Precio</label>
+                    <input type="text" 
+                          className="form-control" 
+                          id="precio" 
+                          name="precio" 
+                          placeholder="Precio"
+                          onChange={event => onInputChange(event)}
+                          value={precio}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label" >Cantidad</label>
+                    <input type="text" 
+                          className="form-control" 
+                          id="cantidad" 
+                          name="cantidad" 
+                          placeholder="Cantidad"
+                          onChange={onInputChange}
+                          value={cantidad}
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-primary">Guardar</button>
+                </form>
               </div>
-              <div className="mb-3">
-                <label className="form-label" >Cantidad</label>
-                <input type="text" 
-                       className="form-control" 
-                       id="cantidad" 
-                       name="cantidad" 
-                       placeholder="Cantidad"
-                       onChange={onInputChange}
-                       value={cantidad}
-                />
-              </div>
-              <button type="submit" className="btn btn-primary">Guardar</button>
-            </form>
+            </div>
             {/* Componente formulario fin*/}
           </div>
         </div>
