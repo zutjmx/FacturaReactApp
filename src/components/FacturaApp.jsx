@@ -10,6 +10,7 @@ import { VistaTotal } from './VistaTotal';
 import { VistaFormularioItems } from './VistaFormularioItems';
 
 export const FacturaApp = () => {
+  const [formaActiva, setFormaActiva] = useState(false);
   const [total, setTotal] = useState(0);
   const [contadorItemId, setContadorItemId] = useState(2001);
   const [factura, setFactura] = useState(getFacturaVacia());
@@ -46,6 +47,10 @@ export const FacturaApp = () => {
     );
   }
 
+  const onFormaActiva = () => {
+    setFormaActiva(!formaActiva);
+  }
+
   return (
     <>
       <div className="container">
@@ -59,12 +64,17 @@ export const FacturaApp = () => {
                 <VistaCliente titulo="Datos del Cliente" cliente={cliente}/> {/* Componente cliente*/}
               </div>
               <div className="col">                
-                <VistaEmpresa titulo="Datos de la Empresa" empresa={empresa}/> {/* Componente empresa*/}                
+                <VistaEmpresa titulo="Datos de la Empresa" empresa={empresa}/> {/* Componente empresa*/}
               </div>
             </div>
-            <VistaProductos titulo="Lista de Productos" items={items}/> {/* Componente productos*/}            
-            <VistaTotal total={total}/> {/* Componente total*/}            
-            <VistaFormularioItems handler={(nuevoItem) => handlerAddItemSubmit(nuevoItem)}/> {/* Componente formulario*/}
+            <VistaProductos titulo="Lista de Productos" items={items}/> {/* Componente productos*/}
+            <VistaTotal total={total}/> {/* Componente total*/}
+            <button className="btn btn-success" 
+                    onClick={onFormaActiva}
+            >
+              {!formaActiva? 'Agregar Producto': 'Ocultar Formulario'}
+            </button>
+            {!formaActiva? '': <VistaFormularioItems handler={(nuevoItem) => handlerAddItemSubmit(nuevoItem)}/>} {/* Componente formulario*/}            
           </div>
         </div>
         {/* Card principal fin*/}
