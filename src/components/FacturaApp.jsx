@@ -47,7 +47,23 @@ export const FacturaApp = () => {
     );
   }
 
-  const onFormaActiva = () => {
+  const handlerBorrarProducto = (id) => {
+    Swal.fire({
+      title: `¿Desea eliminar el producto con ID: ${id}?`,
+      showDenyButton: true,
+      confirmButtonText: 'Borrar',
+      denyButtonText: `No Borrar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setItems(items.filter(item => item.id !== id));
+        Swal.fire('Borrado', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('No se borró', '', 'info')
+      }
+    })
+  }
+
+  const onFormaActiva = () => {    
     setFormaActiva(!formaActiva);
   }
 
@@ -67,7 +83,10 @@ export const FacturaApp = () => {
                 <VistaEmpresa titulo="Datos de la Empresa" empresa={empresa}/> {/* Componente empresa*/}
               </div>
             </div>
-            <VistaProductos titulo="Lista de Productos" items={items}/> {/* Componente productos*/}
+            <VistaProductos titulo="Lista de Productos" 
+                            items={items} 
+                            handlerBorrarProducto={id => handlerBorrarProducto(id)}
+            /> {/* Componente productos*/}
             <VistaTotal total={total}/> {/* Componente total*/}
             <button className="btn btn-success" 
                     onClick={onFormaActiva}

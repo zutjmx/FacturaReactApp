@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { VistaRenglonElemento } from './VistaRenglonElemento';
 
-const VistaProductos = ({titulo,items}) => {
+const VistaProductos = ({titulo,items,handlerBorrarProducto}) => {
     return (
         <>
             <div className="card my-3">
@@ -16,12 +16,19 @@ const VistaProductos = ({titulo,items}) => {
                       <th>Descripcion</th>
                       <th>Precio</th>
                       <th>Cantidad</th>
+                      <th>Eliminar</th>
                     </tr>
                   </thead>
                   <tbody>
                     {items.map(({ id, descripcion, precio, cantidad }) => {
                       return (
-                        <VistaRenglonElemento key={id} id={id} descripcion={descripcion} precio={precio} cantidad={cantidad}/>
+                        <VistaRenglonElemento key={id} 
+                                              id={id} 
+                                              descripcion={descripcion} 
+                                              precio={precio} 
+                                              cantidad={cantidad}
+                                              handlerBorrarProducto={id => handlerBorrarProducto(id)}
+                        />
                       );
                     })}
                   </tbody>
@@ -34,7 +41,8 @@ const VistaProductos = ({titulo,items}) => {
 
 VistaProductos.propTypes = {
     titulo: PropTypes.string.isRequired, 
-    items: PropTypes.array.isRequired
+    items: PropTypes.array.isRequired,
+    handlerBorrarProducto: PropTypes.any.isRequired
 }
 
 export {
